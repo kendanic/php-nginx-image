@@ -1,6 +1,4 @@
-FROM ubuntu:20.04
-
-LABEL maintainer="Mayur Shingrakhiya <mk.shingrakhiya@gmail.com>"
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
