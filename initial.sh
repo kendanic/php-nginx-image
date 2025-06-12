@@ -1,12 +1,12 @@
-[supervisord]
-nodaemon=true
+#!/usr/bin/env bash
 
-[program:nginx]
-command=/usr/sbin/nginx -g "daemon off;"
-stdout_logfile=/dev/stdout
-stderr_logfile=/dev/stderr
+# Create /.composer folder (if needed)
+mkdir -p /.composer
+chmod -R ugo+rw /.composer
 
-[program:php-fpm]
-command=/usr/sbin/php-fpm8.1 -F
-stdout_logfile=/dev/stdout
-stderr_logfile=/dev/stderr
+# Run any passed command or start supervisor
+if [ "$#" -gt 0 ]; then
+    exec "$@"
+else
+    exec /usr/bin/supervisord
+fi
