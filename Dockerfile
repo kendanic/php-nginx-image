@@ -23,18 +23,21 @@ RUN rm -f /etc/nginx/sites-enabled/default \
 # Replace NGINX global config with custom one
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# copy index file for php config working 
+COPY html/ /var/www/html/
+
 # Replace PHP-FPM config
 COPY php.ini /etc/php/8.3/fpm/php.ini
 
 # Optional: Replace PHP-FPM pool config (for www pool tuning)
 COPY www.conf /etc/php/8.3/fpm/pool.d/www.conf
 
-# Copy Supervisor configuration
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# # Copy Supervisor configuration
+# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Entrypoint script
-COPY initial.sh /usr/bin/initial
-RUN chmod +x /usr/bin/initial
+# # Entrypoint script
+# COPY initial.sh /usr/bin/initial
+# RUN chmod +x /usr/bin/initial
 
 WORKDIR /var/www/html
 EXPOSE 80
