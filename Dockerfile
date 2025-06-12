@@ -1,4 +1,5 @@
 FROM ubuntu:24.04
+FROM ubuntu:24.04
 
 LABEL maintainer="Your Name <you@example.com>"
 
